@@ -1,10 +1,11 @@
 import { LayoutBase } from '../../shared/Layouts';
+import { ListToolBar } from '../../shared/components';
 
 export const Dashboard = () => {
   return (
     <LayoutBase
       pageTitle="Página inicial"
-      barraDeFerramentas={<>Barra de ferramentas</>}
+      barraDeFerramentas={<ListToolBar mostrarInputBusca />}
     >
       BATATA
     </LayoutBase>
