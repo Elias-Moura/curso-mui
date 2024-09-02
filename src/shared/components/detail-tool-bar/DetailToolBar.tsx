@@ -17,13 +17,13 @@ interface IDetailToolBar {
   mostrarBotaoVoltar?: boolean;
   mostrarBotaoApagar?: boolean;
   mostrarBotaoSalvar?: boolean;
-  mostrarBotaoSalvarEFechar?: boolean;
+  mostrarBotaoSalvarEVoltar?: boolean;
 
   mostrarBotaoNovoCarregando?: boolean;
   mostrarBotaoVoltarCarregando?: boolean;
   mostrarBotaoApagarCarregando?: boolean;
   mostrarBotaoSalvarCarregando?: boolean;
-  mostrarBotaoSalvarEFecharCarregando?: boolean;
+  mostrarBotaoSalvarEVoltarCarregando?: boolean;
 
   aoClicarEmNovo?: () => void;
   aoClicarEmVoltar?: () => void;
@@ -39,13 +39,13 @@ export const DetailToolBar: React.FC<IDetailToolBar> = ({
   mostrarBotaoVoltar = true,
   mostrarBotaoApagar = true,
   mostrarBotaoSalvar = true,
-  mostrarBotaoSalvarEFechar = false,
+  mostrarBotaoSalvarEVoltar = false,
 
   mostrarBotaoNovoCarregando = false,
   mostrarBotaoVoltarCarregando = false,
   mostrarBotaoApagarCarregando = false,
   mostrarBotaoSalvarCarregando = false,
-  mostrarBotaoSalvarEFecharCarregando = false,
+  mostrarBotaoSalvarEVoltarCarregando = false,
 
   aoClicarEmNovo,
   aoClicarEmVoltar,
@@ -93,8 +93,8 @@ export const DetailToolBar: React.FC<IDetailToolBar> = ({
         />
       )}
 
-      {mostrarBotaoSalvarEFechar &&
-        !mostrarBotaoSalvarEFecharCarregando &&
+      {mostrarBotaoSalvarEVoltar &&
+        !mostrarBotaoSalvarEVoltarCarregando &&
         !smDown &&
         !mdDown && (
         <Button
@@ -114,7 +114,7 @@ export const DetailToolBar: React.FC<IDetailToolBar> = ({
           </Typography>
         </Button>
       )}
-      {mostrarBotaoSalvarEFecharCarregando &&
+      {mostrarBotaoSalvarEVoltarCarregando &&
         !smDown &&
         !mdDown && (
         <Skeleton
