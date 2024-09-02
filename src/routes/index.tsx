@@ -1,14 +1,13 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useAppThemeContext } from '../shared/contexts/ThemeContext';
 import { useDrawerContext } from '../shared/contexts';
 import { useEffect } from 'react';
-import { Home } from '@mui/icons-material';
-import { Dashboard } from '../pages';
-
+import { Home, Map } from '@mui/icons-material';
+import { Dashboard, ListagemDeCidade } from '../pages';
 
 export const AppRoutes = () => {
-  const { toggleTheme } = useAppThemeContext();
-  const { toggleDrawerOpen, setDrawerOptions } = useDrawerContext();
+
+  const { setDrawerOptions } = useDrawerContext();
 
   useEffect(() => {
     // Função utilizada para executar uma tarefa apenas uma vez idenpendente de novos fluxos de render.
@@ -19,9 +18,9 @@ export const AppRoutes = () => {
         icon: Home,
       },
       {
-        label: 'Sobre',
-        path: '/sobre',
-        icon: Home,
+        label: 'cidades',
+        path: '/cidades',
+        icon: Map,
       },
     ]);
   }, []);
@@ -29,12 +28,12 @@ export const AppRoutes = () => {
   return (
     <Routes>
       <Route
-        path="/home"
+        path='/home'
         element={<Dashboard />}
       />
       <Route
-        path="*"
-        element={<Navigate to="/home" />}
+        path='/cidades'
+        element={<ListagemDeCidade />}
       />
     </Routes>
   );

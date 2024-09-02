@@ -1,4 +1,4 @@
-import { Home, SvgIconComponent } from '@mui/icons-material';
+import { SvgIconComponent } from '@mui/icons-material';
 import {
   Avatar,
   Box,
