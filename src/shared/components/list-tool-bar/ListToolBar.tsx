@@ -1,4 +1,5 @@
 import { Box, Button, Icon, Paper, TextField, useTheme } from '@mui/material';
+import { Enviroment } from '../../environment';
 
 interface IListToolBarProps {
   textoDaBusca?: string;
@@ -33,7 +34,7 @@ export const ListToolBar: React.FC<IListToolBarProps> = ({
         <TextField
           size="small"
           value={textoDaBusca}
-          placeholder="Pesquisar..."
+          placeholder={Enviroment.INPUT_DE_BUSCA}
           onChange={(e) => aoMudarTextoDeBusca?.(e.target.value)}
           // ?. para executar apenas se não for undefined
         />
