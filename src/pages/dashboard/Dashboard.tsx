@@ -1,11 +1,11 @@
 import { LayoutBase } from '../../shared/Layouts';
-import { ListToolBar } from '../../shared/components';
+import { DetailToolBar } from '../../shared/components';
 
 export const Dashboard = () => {
   return (
     <LayoutBase
       pageTitle="Página inicial"
-      barraDeFerramentas={<ListToolBar mostrarInputBusca />}
+      barraDeFerramentas={<DetailToolBar mostrarBotaoSalvarEFechar/>}
     >
       BATATA
     </LayoutBase>
