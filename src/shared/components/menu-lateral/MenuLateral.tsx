@@ -10,8 +10,9 @@ import {
   ListItemText,
   useMediaQuery,
   useTheme,
+  Icon,
 } from '@mui/material';
-import { useDrawerContext } from '../../contexts';
+import { useAppThemeContext, useDrawerContext } from '../../contexts';
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
 import React from 'react';
 
@@ -21,7 +22,7 @@ interface IMenuLateral {
 
 interface IListItemProps {
   label: string;
-  icon:  SvgIconComponent;
+  icon: SvgIconComponent;
   to: string;
   onClick: (() => void) | undefined;
 }
@@ -46,9 +47,7 @@ const ListItemLink: React.FC<IListItemProps> = ({
       selected={!!match}
       onClick={handleClick}
     >
-      <ListItemIcon>
-        {icon && React.createElement(icon)}
-      </ListItemIcon>
+      <ListItemIcon>{icon && React.createElement(icon)}</ListItemIcon>
       <ListItemText primary={label} />
     </ListItemButton>
   );
@@ -57,6 +56,7 @@ const ListItemLink: React.FC<IListItemProps> = ({
 export const MenuLateral: React.FC<IMenuLateral> = ({ children }) => {
   const theme = useTheme();
   const isSmDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const { themeName, toggleTheme } = useAppThemeContext();
 
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
 
@@ -97,6 +97,21 @@ export const MenuLateral: React.FC<IMenuLateral> = ({ children }) => {
                   onClick={isSmDown ? toggleDrawerOpen : undefined}
                 />
               ))}
+            </List>
+          </Box>
+          <Divider />
+          <Box>
+            <List component="nav">
+              <ListItemButton onClick={toggleTheme}>
+                <ListItemIcon>
+                  {themeName == 'light' ? (
+                    <Icon>dark_mode</Icon>
+                  ) : (
+                    <Icon>wb_sunnyicon</Icon>
+                  )}
+                </ListItemIcon>
+                <ListItemText primary="Alternar tema" />
+              </ListItemButton>
             </List>
           </Box>
         </Box>
