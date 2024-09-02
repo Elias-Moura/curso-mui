@@ -1,12 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
-import { useAppThemeContext } from '../shared/contexts/ThemeContext';
 import { useDrawerContext } from '../shared/contexts';
 import { useEffect } from 'react';
-import { Home, Map } from '@mui/icons-material';
-import { Dashboard, ListagemDeCidade } from '../pages';
+import { Home, Map, PeopleAlt } from '@mui/icons-material';
+import { Dashboard, ListagemDePessoas } from '../pages';
 
 export const AppRoutes = () => {
-
   const { setDrawerOptions } = useDrawerContext();
 
   useEffect(() => {
@@ -22,6 +20,11 @@ export const AppRoutes = () => {
         path: '/cidades',
         icon: Map,
       },
+      {
+        label: 'pessoas',
+        path: '/pessoas',
+        icon: PeopleAlt,
+      },
     ]);
   }, []);
 
@@ -32,8 +35,12 @@ export const AppRoutes = () => {
         element={<Dashboard />}
       />
       <Route
+        path='/pessoas'
+        element={<ListagemDePessoas />}
+      />
+      <Route
         path='/cidades'
-        element={<ListagemDeCidade />}
+        element={<ListagemDePessoas />}
       />
     </Routes>
   );
