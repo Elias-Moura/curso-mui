@@ -7,19 +7,23 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { useDrawerContext } from '../contexts';
+import { ReactNode } from 'react';
 
 interface ILayoutBaseProps {
   children: React.ReactNode;
   pageTitle: string;
+  barraDeFerramentas?: ReactNode; // ? significa que pode ser undefined
 }
 
 export const LayoutBase: React.FC<ILayoutBaseProps> = ({
   children,
   pageTitle,
+  barraDeFerramentas,
 }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
-  const {toggleDrawerOpen} = useDrawerContext();
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const { toggleDrawerOpen } = useDrawerContext();
 
   return (
     <Box
@@ -30,7 +34,7 @@ export const LayoutBase: React.FC<ILayoutBaseProps> = ({
     >
       <Box
         padding={1}
-        height={theme.spacing(12)}
+        height={theme.spacing(smDown ? 6 : mdDown ? 8 : 12) }
         display="flex"
         alignItems="center"
         gap={1}
@@ -41,10 +45,23 @@ export const LayoutBase: React.FC<ILayoutBaseProps> = ({
           </IconButton>
         )}
 
-        <Typography variant="h5">{pageTitle}</Typography>
+        <Typography
+          variant={smDown ? 'h5' : mdDown ? 'h4' : 'h3'}
+          overflow="hidden" // corta o texto se passar do tamanho disponível
+          textOverflow="ellipsis" // coloca os ...
+          whiteSpace="nowrap" // Não quebra a linha
+        >
+          {pageTitle}
+        </Typography>
       </Box>
-      <Box>Barra de Ferramentas</Box>
-      <Box>{children}</Box>
+      {barraDeFerramentas && <Box>{barraDeFerramentas}</Box>}
+
+      <Box
+        flex={1} // para ocupar todo o espaço restante
+        overflow="auto" // scroll somente nesse box
+      >
+        {children}
+      </Box>
     </Box>
   );
 };
