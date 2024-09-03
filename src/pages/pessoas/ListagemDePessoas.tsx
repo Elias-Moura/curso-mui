@@ -8,14 +8,18 @@ import {
 } from '../../shared/services/api/pessoas/PessoasService';
 import { useDebounce } from '../../shared/hooks';
 import {
+  LinearProgress,
   Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
+  TableFooter,
   TableHead,
   TableRow,
+  Typography,
 } from '@mui/material';
+import { Enviroment } from '../../shared/environment';
 
 export const ListagemDePessoas: React.FC = () => {
   const isFirstRender = useRef(true);
@@ -31,6 +35,8 @@ export const ListagemDePessoas: React.FC = () => {
 
   const { debounce } = useDebounce();
   const realizarBusca = useCallback(() => {
+    setIsLoading(true);
+    console.log(busca);
     PessoasService.getAll(1, busca).then((result) => {
       setIsLoading(false);
       if (result instanceof Error) {
@@ -44,8 +50,6 @@ export const ListagemDePessoas: React.FC = () => {
   }, [busca]);
 
   useEffect(() => {
-    setIsLoading(true);
-
     if (isFirstRender.current) {
       isFirstRender.current = false;
       realizarBusca();
@@ -92,6 +96,20 @@ export const ListagemDePessoas: React.FC = () => {
               </TableRow>
             ))}
           </TableBody>
+
+          {rows.length == 0 && (
+            <caption>{Enviroment.LISTAGEM_VAZIA}</caption>
+          )}
+
+          <TableFooter>
+            {isLoading && (
+              <TableRow>
+                <TableCell colSpan={4}>
+                  <LinearProgress variant='indeterminate' />
+                </TableCell>
+              </TableRow>
+            )}
+          </TableFooter>
         </Table>
       </TableContainer>
     </LayoutBase>

@@ -1,3 +1,4 @@
+
 export const Enviroment = {
   /**
    * Define a quantidade de linhas a ser carregada por padrão nas listagens
@@ -17,5 +18,5 @@ export const Enviroment = {
    * número que repesenta a máquina que tem o json server
    * e não para localhost
    */
-  URL_BASE: 'http://192.168.0.151:3001', // http://localhost/3001
+  URL_BASE: 'http://localhost:3001',
 };
