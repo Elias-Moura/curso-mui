@@ -101,7 +101,7 @@ const deleteById = async (id: number): Promise<void | Error> => {
   } catch (error) {
     console.error(error);
     return new Error(
-      (error as { message: string }).message || 'Erro ao editar registro.'
+      (error as { message: string }).message || 'Erro ao excluir registro.'
     );
   }
 };

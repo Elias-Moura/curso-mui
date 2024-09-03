@@ -8,6 +8,9 @@ import {
 } from '../../shared/services/api/pessoas/PessoasService';
 import { useDebounce } from '../../shared/hooks';
 import {
+  Box,
+  Icon,
+  IconButton,
   LinearProgress,
   Pagination,
   Paper,
@@ -40,7 +43,6 @@ export const ListagemDePessoas: React.FC = () => {
 
   const { debounce } = useDebounce();
   const realizarBusca = useCallback(() => {
-
     console.log(busca);
     PessoasService.getAll(pagina, busca).then((result) => {
       setIsLoading(false);
@@ -63,6 +65,21 @@ export const ListagemDePessoas: React.FC = () => {
       debounce(realizarBusca);
     }
   }, [busca, debounce, realizarBusca]);
+
+  const handleDelete = (id: number) => {
+    if (confirm('Realmente deseja apagar?')) {
+      PessoasService.deleteById(id).then((result) => {
+        if (result instanceof Error) {
+          alert(result.message);
+        } else {
+          setRows((oldRows) => {
+            return [...oldRows.filter((oldRow) => oldRow.id !== id)];
+          });
+          alert('Registro apagado com sucesso!');
+        }
+      });
+    }
+  };
 
   return (
     <LayoutBase
@@ -95,7 +112,20 @@ export const ListagemDePessoas: React.FC = () => {
           <TableBody>
             {rows.map((row) => (
               <TableRow key={row.id}>
-                <TableCell>Ações</TableCell>
+                <TableCell>
+                  <IconButton
+                    sx={{ pr: 2 }}
+                    size='small'
+                    onClick={() => {
+                      handleDelete(row.id);
+                    }}
+                  >
+                    <Icon>delete</Icon>
+                  </IconButton>
+                  <IconButton size='small'>
+                    <Icon>edit</Icon>
+                  </IconButton>
+                </TableCell>
                 <TableCell>{row.id}</TableCell>
                 <TableCell>{row.nomeCompleto}</TableCell>
                 <TableCell>{row.email}</TableCell>
