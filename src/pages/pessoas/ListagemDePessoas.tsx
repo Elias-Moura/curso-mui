@@ -1,6 +1,6 @@
 import { LayoutBase } from '../../shared/Layouts';
 import { ListToolBar } from '../../shared/components';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   IListagemPessoa,
@@ -21,13 +21,15 @@ import {
   TableFooter,
   TableHead,
   TableRow,
-  Typography,
+  useTheme,
 } from '@mui/material';
 import { Enviroment } from '../../shared/environment';
 
 export const ListagemDePessoas: React.FC = () => {
   const isFirstRender = useRef(true);
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const theme = useTheme();
 
   const [rows, setRows] = useState<IListagemPessoa[]>([]);
   const [totalCount, setTotalCount] = useState(0);
@@ -103,8 +105,8 @@ export const ListagemDePessoas: React.FC = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Ações</TableCell>
-              <TableCell>Id</TableCell>
+              <TableCell width={theme.spacing(10)}>Ações</TableCell>
+              <TableCell width={theme.spacing(5)}>Id</TableCell>
               <TableCell>Nome completo</TableCell>
               <TableCell>Email</TableCell>
             </TableRow>
@@ -122,7 +124,10 @@ export const ListagemDePessoas: React.FC = () => {
                   >
                     <Icon>delete</Icon>
                   </IconButton>
-                  <IconButton size='small'>
+                  <IconButton
+                    size='small'
+                    onClick={() => navigate(`/pessoas/detalhe/${row.id}`)}
+                  >
                     <Icon>edit</Icon>
                   </IconButton>
                 </TableCell>

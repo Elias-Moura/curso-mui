@@ -39,9 +39,13 @@ export const AppRoutes = () => {
         element={<ListagemDePessoas />}
       />
       <Route
+        path='/pessoas/detalhe/:id'
+        element={<p>Detalheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</p>}
+      />
+      {/* <Route
         path='/cidades'
         element={<ListagemDePessoas />}
-      />
+      /> */}
     </Routes>
   );
 };
