@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useDrawerContext } from '../shared/contexts';
 import { useEffect } from 'react';
 import { Home, Map, PeopleAlt } from '@mui/icons-material';
-import { Dashboard, ListagemDePessoas } from '../pages';
+import { Dashboard, DetalheDePessoas, ListagemDePessoas } from '../pages';
 
 export const AppRoutes = () => {
   const { setDrawerOptions } = useDrawerContext();
@@ -40,7 +40,7 @@ export const AppRoutes = () => {
       />
       <Route
         path='/pessoas/detalhe/:id'
-        element={<p>Detalheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</p>}
+        element={<DetalheDePessoas />}
       />
       {/* <Route
         path='/cidades'
