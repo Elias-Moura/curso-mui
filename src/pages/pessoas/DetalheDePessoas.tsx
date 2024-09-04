@@ -9,6 +9,7 @@ import { VTextField, VForm, useVForm, IVFormErrors } from '../../shared/forms';
 import '../../shared/forms/TraducoesYup';
 
 import * as yup from 'yup';
+import { AutoCompleteCidade } from './components/AutoCompleteCidade';
 
 interface IFormData {
   email: string;
@@ -57,7 +58,7 @@ export const DetalheDePessoas: React.FC = () => {
       formRef.current?.setData({
         nomeCompleto: '',
         email: '',
-        cidadeId: '',
+        cidadeId: undefined,
       });
     }
   }, [id]);
@@ -218,12 +219,7 @@ export const DetalheDePessoas: React.FC = () => {
                 item
                 size={{ xs: 12, sm: 8, md: 6, lg: 4 }}
               >
-                <VTextField
-                  fullWidth
-                  label='Cidade'
-                  placeholder='1'
-                  name='cidadeId'
-                />
+                <AutoCompleteCidade  isExternalLoading={isLoading} />
               </Grid2>
             </Grid2>
           </Grid2>
