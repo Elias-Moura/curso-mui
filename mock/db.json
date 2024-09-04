@@ -168,5 +168,19 @@
       "email": "a.silva@gmail.com",
       "cidadeId": "2"
     }
+  ],
+  "cidades": [
+    {
+      "id": 1,
+      "nome": "Rio de Janeiro"
+    },
+    {
+      "nome": "São Paulo",
+      "id": 2
+    },
+    {
+      "nome": "Dois irmãos",
+      "id": 3
+    }
   ]
 }
