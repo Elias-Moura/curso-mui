@@ -19,4 +19,5 @@ export const Enviroment = {
    * e não para localhost
    */
   URL_BASE: 'http://localhost:3001',
+  LOCAL_STORAGE_KEY_ACCESS_TOKEN: 'APP_ACCESS_TOKEN',
 };

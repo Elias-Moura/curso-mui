@@ -228,5 +228,8 @@
       "nome": "Macuco",
       "id": 13
     }
-  ]
+  ],
+  "auth": {
+    "token": "aaa.bbb.ccc"
+  }
 }

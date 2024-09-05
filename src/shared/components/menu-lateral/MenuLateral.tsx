@@ -12,7 +12,7 @@ import {
   useTheme,
   Icon,
 } from '@mui/material';
-import { useAppThemeContext, useDrawerContext } from '../../contexts';
+import { useAppThemeContext, useAuthContext, useDrawerContext } from '../../contexts';
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
 import React from 'react';
 
@@ -57,6 +57,7 @@ export const MenuLateral: React.FC<IMenuLateral> = ({ children }) => {
   const theme = useTheme();
   const isSmDown = useMediaQuery(theme.breakpoints.down('sm'));
   const { themeName, toggleTheme } = useAppThemeContext();
+  const { logout } = useAuthContext();
 
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
 
@@ -111,6 +112,12 @@ export const MenuLateral: React.FC<IMenuLateral> = ({ children }) => {
                   )}
                 </ListItemIcon>
                 <ListItemText primary="Alternar tema" />
+              </ListItemButton>
+              <ListItemButton onClick={logout}>
+                <ListItemIcon>
+                  <Icon>logout</Icon>
+                </ListItemIcon>
+                <ListItemText primary="Sair" />
               </ListItemButton>
             </List>
           </Box>
